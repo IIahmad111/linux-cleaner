@@ -36,10 +36,18 @@ Full_clean() {
 	sudo apt-get autoremove
 	sudo apt-get clean
 	dconf reset -f /
-	LogSize = du -hs /var/log/journal/
-	echo "Cleaning $LogSize files"
+	history -C
+	Logs(){
+		du -hs /var/log/journal/
+		sudo du -sh ~/.cache/thumbnails
+		return 0
+}
+	echo "Cleaning"
+	echo $Log
 	sleep 1.1
 	journalctl --vacuum-time=10d
+	sudo rm -rf /var/log/journal/*
+	sudo rm -rf ~/.cache/thumbnails/*
 	echo ""
 	echo " Clean Completed "
 	echo ""
@@ -62,7 +70,7 @@ Quick_clean(){
         sudo rm -rf /var/log/journal/*
         sudo apt-get autoremove
         sudo apt-get clean
-
+	history -C
 }
 
 ##
