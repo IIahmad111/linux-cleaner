@@ -14,6 +14,15 @@ Logo() {
 ##
 Full_clean() {
 	clear
+	echo "Warning..."
+	echo "Full_clean will reset shortcuts, favorite apps list and remove all input languages"
+	echo "are you sure you want to continue ? [y/n]"
+	read f
+	f=${f^^}
+	if [[ $f == 'N' || $f == "NO" ]]; then
+		exit
+	fi
+	clear
 	sleep 0.5
 	Logo
 	echo "FULL CLEAN"
