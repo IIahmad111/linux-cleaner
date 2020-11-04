@@ -1,4 +1,4 @@
 # linux-cleaner
-# only use run command:
+# Tool still on bete version
 
 $ sudo bash cleaner.sh
