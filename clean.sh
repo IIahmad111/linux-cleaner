@@ -32,9 +32,14 @@ Full_clean() {
 	sudo apt-get -f install
 	sudo apt-get full-upgrade
 	sudo apt-get install --reinstall ubuntu-desktop
+	sudo rm -rf /var/log/journal/*
 	sudo apt-get autoremove
 	sudo apt-get clean
 	dconf reset -f /
+	LogSize = du -hs /var/log/journal/
+	echo "Cleaning $LogSize files"
+	sleep 1.1
+	journalctl --vacuum-time=10d
 	echo ""
 	echo " Clean Completed "
 	echo ""
@@ -43,6 +48,7 @@ Full_clean() {
 	echo " please reboot system by typing : "
 	echo " sudo reboot"
 	sleep 2
+
 }
 
 ##
@@ -53,6 +59,10 @@ Quick_clean(){
 	sleep 0.9
 	sudo apt autoremove
 	sudo dpkg --configure -a
+        sudo rm -rf /var/log/journal/*
+        sudo apt-get autoremove
+        sudo apt-get clean
+
 }
 
 ##
